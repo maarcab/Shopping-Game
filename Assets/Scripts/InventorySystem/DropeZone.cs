@@ -22,18 +22,17 @@ public class DropZone : MonoBehaviour
         ItemLogic dragItem = other.GetComponent<ItemLogic>();
         dragItem.CheckZoneCollision(null);
     }
-    public void ActivateAction(ItemData item)
+    public bool ActivateAction(ItemData item)
     {
         switch (action)
         {
             case DropAction.Sell:
-                inventoryManager.SellItem(item);
-                break;
+                return inventoryManager.SellItem(item);
 
             case DropAction.Buy:
-                inventoryManager.BuyItem(item);
-                break;
+                return inventoryManager.BuyItem(item);
         }
+        return false;
         // Destruir el objeto despu?s de la acci?n
         //Destroy(item);
     }

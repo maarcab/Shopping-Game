@@ -32,8 +32,17 @@ public class ItemLogic : MonoBehaviour
     {
         if (dropZone != null)
         {
-            dropZone.ActivateAction(itemData);
-            Destroy(gameObject);
+            bool success = dropZone.ActivateAction(itemData);
+
+            if (success)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                transform.localPosition = Vector3.zero;
+                ButtonLogic.SelectItem(gameObject, itemData);
+            }
         }
         else
         {

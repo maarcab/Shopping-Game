@@ -56,7 +56,7 @@ public class InventoryManager : MonoBehaviour
         }
         return 0;
     }
-    public void BuyItem(ItemData selectedItem)
+    public bool BuyItem(ItemData selectedItem)
     {
         if (playerInventory.playerInventory.Count < 35)
         {
@@ -70,18 +70,21 @@ public class InventoryManager : MonoBehaviour
                 shopInventory.shopInventory.Remove(selectedItem);
 
                 UpdateUI();
+                return true;
             }
             else
             {
                 Debug.Log("No tienes suficiente dinero o el objeto no está disponible.");
+                return false;
             }
         }
         else
         {
             Debug.Log("InventarioLleno");
+            return false;
         }
     }
-    public void SellItem(ItemData selectedItem)
+    public bool SellItem(ItemData selectedItem)
     {
         if (shopInventory.shopInventory.Count < 35)
         {
@@ -95,15 +98,18 @@ public class InventoryManager : MonoBehaviour
                 shopInventory.shopInventory.Add(selectedItem);
 
                 UpdateUI();
+                return true;
             }
             else
             {
                 Debug.Log("No puedes vender este ítem.");
+                return false;
             }
         }
         else
         {
             Debug.Log("TiendaLlena");
+            return false;
         }
     }
     public void UseItem(ItemData selectedItem)
