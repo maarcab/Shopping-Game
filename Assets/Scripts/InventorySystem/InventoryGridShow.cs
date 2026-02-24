@@ -5,96 +5,56 @@ using UnityEngine.UI;
 
 public class InventoryGridShow : MonoBehaviour
 {
-    Inventory inv;
-    [SerializeField] bool isPlayerInv = false;
-    [SerializeField] List<ItemData> inventoryToShow = new List<ItemData>();
-    [SerializeField] List<Transform> objectsDisplayed = new List<Transform>();
-    [SerializeField] List<GameObject> slots = new List<GameObject>();
-    GridLayoutGroup grid;
-    
-    [SerializeField] GameObject[] objectPrefabs;//1-> Usable 2->Sellable 3->Buyable
+    public static InventoryGridShow instance;
+    [SerializeField] List<SlotLogic> shopSlot = new List<SlotLogic>();
+    [SerializeField] List<SlotLogic> inventorySlots = new List<SlotLogic>();
 
-    void Start()
+    void Awake()
     {
-        inv = GameObject.FindGameObjectWithTag("GameController").GetComponent<Inventory>();
-       
-        grid = gameObject.GetComponent<GridLayoutGroup>();
-        if (isPlayerInv)
-        {
-            inventoryToShow = inv?.playerInventory;
-        }
-        else
-        {
-            inventoryToShow = inv?.shopInventory;
-        }
+        instance = this;
     }
 
-    void Update()
+    public bool AddItemToSlot(GameObject item, bool toInventory)
     {
-        if (isPlayerInv)
+        foreach (SlotLogic s in toInventory ? inventorySlots : shopSlot)
         {
-            if (inventoryToShow.Count != objectsDisplayed.Count)
+            if (s.isEmpty)
             {
-                inventoryToShow = inv?.playerInventory;
-                CreateItems();
+                s.isEmpty = false;
+                item.transform.parent = s.transform;
+                item.transform.localPosition = Vector3.zero;
+                return true;
             }
         }
-        else
-        {
-            if (inventoryToShow.Count != objectsDisplayed.Count)
-            {
-                inventoryToShow = inv?.shopInventory;
-                CreateItems();
-            }
-        }
+        return false;
     }
-    void CreateItems()
+
+    // Nuevo método para reorganizar los slots
+    public void ReorganizeSlots(bool isPlayerInventory)
     {
-        ClearLateObjects();
-        objectsDisplayed.Clear();
-        for (int i = 0; i < inventoryToShow.Count; i++)
+        List<SlotLogic> slots = isPlayerInventory ? inventorySlots : shopSlot;
+        List<ItemLogic> items = new List<ItemLogic>();
+
+        foreach (SlotLogic slot in slots)
         {
-            GameObject k;
-            if (isPlayerInv)
+            if (slot.transform.childCount > 0)
             {
-                if (inventoryToShow[i].itemType != ItemData.ItemType.Weapon)
+                ItemLogic item = slot.transform.GetChild(0).GetComponent<ItemLogic>();
+                if (item != null)
                 {
-                    k = Instantiate(objectPrefabs[0]);
-                    Debug.Log("UsableItemCreated");
-                }
-                else
-                {
-                    k = Instantiate(objectPrefabs[1]);
-                    Debug.Log("NonUsableItemCreated");
+                    items.Add(item);
                 }
             }
-            else
-            {
-                k = Instantiate(objectPrefabs[2]);
-                Debug.Log("ShopItemCreated");
-            }
-
-            k.SendMessage("OnData", inventoryToShow[i]);
-            k.transform.SetParent(slots[i].transform, false);
-            if (isPlayerInv)
-            {
-                k.layer = 6;
-            }
-            else
-            {
-                k.layer = 7;
-            }
-            objectsDisplayed.Add(k.transform);
         }
-    }
-    void ClearLateObjects()
-    {
-        for (int i = 0; i < slots.Count; i++)
+        foreach (SlotLogic slot in slots)
         {
-            if (!slots[i].GetComponent<SlotLogic>().isEmpty && slots[i].transform.childCount > 0)
-            {
-                Destroy(slots[i].transform.GetChild(0).gameObject);
-            }
+            slot.isEmpty = true;
+        }
+        for (int i = 0; i < items.Count && i < slots.Count; i++)
+        {
+            slots[i].isEmpty = false;
+            items[i].transform.SetParent(slots[i].transform);
+            items[i].transform.localPosition = Vector3.zero;
         }
     }
 }

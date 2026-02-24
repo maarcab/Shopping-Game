@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ManaPotionData
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Mana Potion
-  icon: {fileID: 5326726212536991409, guid: bb8cd85972afbba4796e200e0b6e9c8f, type: 3}
+  icon: {fileID: -1965184042450674564, guid: bb8cd85972afbba4796e200e0b6e9c8f, type: 3}
   cost: 8
   itemType: 1
   lifeRestore: 0

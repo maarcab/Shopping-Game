@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<ItemData> playerInventory = new List<ItemData>();
-    public List<ItemData> shopInventory = new List<ItemData>();
+    public static Inventory instance;
+
+    public List<ItemLogic> playerInventory = new List<ItemLogic>();
+    public List<ItemLogic> shopInventory = new List<ItemLogic>();
+
+    private void Awake()
+    {
+        instance = this;
+    }
 }

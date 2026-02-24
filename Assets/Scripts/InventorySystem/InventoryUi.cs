@@ -6,36 +6,36 @@ public class InventoryUI : MonoBehaviour
     public Inventory inventory;
     public int playerCoins = 100;
 
-    public void HandleDrop(ItemData item, string buttonTag)
+    public void HandleDrop(ItemLogic item, string buttonTag)
     {
         if (item == null) return;
 
         switch (buttonTag)
         {
             case "BuyButton":
-                if (inventory.shopInventory.Contains(item) && playerCoins >= item.cost)
+                if (inventory.shopInventory.Contains(item) && playerCoins >= item.itemData.cost)
                 {
-                    playerCoins -= item.cost;
+                    playerCoins -= item.itemData.cost;
                     inventory.playerInventory.Add(item);
                     inventory.shopInventory.Remove(item);
-                    Debug.Log($"Comprat: {item.itemName}");
+                    Debug.Log($"Comprat: {item.itemData.itemName}");
                 }
                 break;
 
             case "SellButton":
                 if (inventory.playerInventory.Contains(item))
                 {
-                    playerCoins += item.cost;
+                    playerCoins += item.itemData.cost;
                     inventory.playerInventory.Remove(item);
                     inventory.shopInventory.Add(item);
-                    Debug.Log($"Vengut: {item.itemName}");
+                    Debug.Log($"Vengut: {item.itemData.itemName}");
                 }
                 break;
 
             case "UseButton":
-                if (inventory.playerInventory.Contains(item) && (item.itemType == ItemData.ItemType.Food || item.itemType == ItemData.ItemType.Potion))
+                if (inventory.playerInventory.Contains(item) && (item.itemData.itemType == ItemData.ItemType.Food || item.itemData.itemType == ItemData.ItemType.Potion))
                 {
-                    Debug.Log($"Usat: {item.itemName} - Restaura {item.lifeRestore} de vida");
+                    Debug.Log($"Usat: {item.itemData.itemName} - Restaura {item.itemData.lifeRestore} de vida");
                     inventory.playerInventory.Remove(item);
                 }
                 else
@@ -50,4 +50,3 @@ public class InventoryUI : MonoBehaviour
         }
     }
 }
-

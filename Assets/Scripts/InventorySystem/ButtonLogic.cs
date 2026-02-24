@@ -10,9 +10,6 @@ public class ButtonLogic : MonoBehaviour
 {
     static InventoryManager invManager;
 
-    static ItemData item;
-    static GameObject selectedItem;
-
     Button button;
     TextMeshProUGUI text;
     bool shopItem;
@@ -21,20 +18,19 @@ public class ButtonLogic : MonoBehaviour
     void Awake()
     {
         invManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<InventoryManager>();
-        item = null;
-        selectedItem = null;
         button = GetComponent<Button>();
         text = transform.GetComponentInChildren<TextMeshProUGUI>();
     }
     private void Update()
     {
+        ItemLogic item = InventoryManager.instance.SelectedItem;
         switch (bType)
         {
             case ButtonTypes.BuySell:
-                if (selectedItem != null)
+                if (item != null)
                 {
                     button.interactable = true;
-                    if (selectedItem.layer == 7)
+                    if (item.gameObject.layer == 7)
                     {
                         shopItem = true;
                         GetComponent<LocalizeText>().SetKeyWord("Buy");
@@ -51,9 +47,9 @@ public class ButtonLogic : MonoBehaviour
                 }
                 break;
             case ButtonTypes.Use:
-                if (selectedItem != null)
+                if (item != null)
                 {
-                    if (selectedItem.layer == 6 && item.itemType != ItemData.ItemType.Weapon)
+                    if (item.gameObject.layer == 6 && item.itemData.itemType != ItemData.ItemType.Weapon)
                     {
                         button.interactable = true;
                     }
@@ -68,7 +64,7 @@ public class ButtonLogic : MonoBehaviour
                 }
                 break;
             case ButtonTypes.Generate:
-                if (invManager.shopInventory.shopInventory.Count >= 35)
+                if (Inventory.instance.shopInventory.Count >= 35)
                 {
                     button.interactable = false;
                 }
@@ -79,28 +75,27 @@ public class ButtonLogic : MonoBehaviour
                 break;
         }
     }
-    public static void SelectItem(GameObject newItem, ItemData data)
-    {
-        selectedItem = newItem;
-        item = data;
-        invManager.MoveSelector(selectedItem);
-    }
     public void OnBuySell()
     {
-        if (shopItem)
+        if (InventoryManager.instance.SelectedItem != null)
         {
-            invManager.BuyItem(item);
+            if (shopItem)
+            {
+                invManager.BuyItem();
+            }
+            else
+                invManager.SellItem();
         }
-        else
-        {
-            invManager.SellItem(item);
-        }
-        invManager.MoveSelector(null);
+        invManager.MoveSelector();
     }
+
     public void OnUse()
     {
-        invManager.UseItem(item);
-        invManager.MoveSelector(null);
+        if (InventoryManager.instance.SelectedItem != null)
+        {
+            invManager.UseItem();
+            invManager.MoveSelector();
+        }
     }
 }
 

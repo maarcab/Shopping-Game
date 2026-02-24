@@ -284,7 +284,6 @@ GameObject:
   m_Component:
   - component: {fileID: 11608812}
   - component: {fileID: 11608814}
-  - component: {fileID: 11608813}
   m_Layer: 5
   m_Name: InventoryItems
   m_TagString: Untagged
@@ -343,64 +342,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.9052794}
-  m_AnchoredPosition: {x: -6, y: -0.6448059}
+  m_AnchoredPosition: {x: -6, y: -0.6447754}
   m_SizeDelta: {x: -8.6154785, y: 0.5100708}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &11608813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11608811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b8aa86b7bcd58342b5150ff68d19782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryGridShow
-  isPlayerInv: 0
-  inventoryToShow: []
-  objectsDisplayed: []
-  slots:
-  - {fileID: 1670887107}
-  - {fileID: 1936492184}
-  - {fileID: 159975077}
-  - {fileID: 208532759}
-  - {fileID: 302009699}
-  - {fileID: 652975746}
-  - {fileID: 1123607356}
-  - {fileID: 2080158189}
-  - {fileID: 1159608356}
-  - {fileID: 1612745459}
-  - {fileID: 1698398430}
-  - {fileID: 360019239}
-  - {fileID: 20223478}
-  - {fileID: 1902024706}
-  - {fileID: 1702013326}
-  - {fileID: 1308304834}
-  - {fileID: 1364470214}
-  - {fileID: 1037381047}
-  - {fileID: 818093143}
-  - {fileID: 1205566731}
-  - {fileID: 777537189}
-  - {fileID: 1098488900}
-  - {fileID: 60722721}
-  - {fileID: 319773873}
-  - {fileID: 254544978}
-  - {fileID: 123256737}
-  - {fileID: 1913409952}
-  - {fileID: 2102144616}
-  - {fileID: 1002858311}
-  - {fileID: 1072253185}
-  - {fileID: 557174622}
-  - {fileID: 933116485}
-  - {fileID: 1996380841}
-  - {fileID: 100866089}
-  - {fileID: 1909259814}
-  objectPrefabs:
-  - {fileID: 7597502270807152435, guid: a6ca806b23cca574bbf1ee06bf8e4d63, type: 3}
-  - {fileID: 8594724769945052535, guid: 4f38133829c13ac49bda143717b205cc, type: 3}
-  - {fileID: 882170677884890014, guid: 0504c317e9ede3c45b88fdf461fc1b6f, type: 3}
 --- !u!114 &11608814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,7 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -706,7 +650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08187786, y: 0.13900001}
   m_AnchorMax: {x: 0.35954204, y: 0.8928278}
-  m_AnchoredPosition: {x: 956, y: 0.33291626}
+  m_AnchoredPosition: {x: 956, y: 0.33288574}
   m_SizeDelta: {x: -6.7647705, y: -0.6658325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &62576001
@@ -4188,7 +4132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1264473745}
   - component: {fileID: 1264473747}
-  - component: {fileID: 1264473746}
   m_Layer: 5
   m_Name: InventoryItems
   m_TagString: Untagged
@@ -4247,64 +4190,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.9052794}
-  m_AnchoredPosition: {x: 0.76205444, y: 0.020996094}
+  m_AnchoredPosition: {x: 0.7620239, y: 0.020996094}
   m_SizeDelta: {x: -0.049987793, y: 0.51000977}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1264473746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1264473744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b8aa86b7bcd58342b5150ff68d19782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryGridShow
-  isPlayerInv: 1
-  inventoryToShow: []
-  objectsDisplayed: []
-  slots:
-  - {fileID: 663054832}
-  - {fileID: 714600844}
-  - {fileID: 1071510424}
-  - {fileID: 2010348684}
-  - {fileID: 2123260460}
-  - {fileID: 1657725477}
-  - {fileID: 280694697}
-  - {fileID: 1182397860}
-  - {fileID: 1582842000}
-  - {fileID: 1962995955}
-  - {fileID: 1554073252}
-  - {fileID: 705058792}
-  - {fileID: 1914383646}
-  - {fileID: 824378742}
-  - {fileID: 716938585}
-  - {fileID: 340361620}
-  - {fileID: 1527975177}
-  - {fileID: 1047834342}
-  - {fileID: 2111333014}
-  - {fileID: 1489169149}
-  - {fileID: 1970413063}
-  - {fileID: 592184439}
-  - {fileID: 1872319711}
-  - {fileID: 786464691}
-  - {fileID: 773791487}
-  - {fileID: 570272911}
-  - {fileID: 747484854}
-  - {fileID: 497269652}
-  - {fileID: 3271556}
-  - {fileID: 1886368330}
-  - {fileID: 139933975}
-  - {fileID: 901060425}
-  - {fileID: 1298643242}
-  - {fileID: 2110824989}
-  - {fileID: 94834463}
-  objectPrefabs:
-  - {fileID: 7597502270807152435, guid: a6ca806b23cca574bbf1ee06bf8e4d63, type: 3}
-  - {fileID: 8594724769945052535, guid: 4f38133829c13ac49bda143717b205cc, type: 3}
-  - {fileID: 882170677884890014, guid: 0504c317e9ede3c45b88fdf461fc1b6f, type: 3}
 --- !u!114 &1264473747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4554,7 +4442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.8627451}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5154,7 +5042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1638537098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6277,7 +6165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6320,7 +6208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.6864428, y: 0.13900001}
   m_AnchorMax: {x: 0.95600003, y: 0.8928278}
-  m_AnchoredPosition: {x: -979.00006, y: -0.33291626}
+  m_AnchoredPosition: {x: -979.00006, y: -0.33288574}
   m_SizeDelta: {x: 0.23522949, y: -0.6658325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1996380841
@@ -6604,6 +6492,7 @@ GameObject:
   - component: {fileID: 2107643717}
   - component: {fileID: 2107643716}
   - component: {fileID: 2107643715}
+  - component: {fileID: 2107643719}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -6637,8 +6526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a507f04cb4ba8fc45ab1034fea8ff2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  playerInventory: {fileID: 2107643717}
-  shopInventory: {fileID: 2107643717}
   coinText: {fileID: 1537411341}
   shopCoinText: {fileID: 2127330163}
   healthText: {fileID: 266965027}
@@ -6654,6 +6541,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e402d2fc7893dd48afc0042b7f04bbc, type: 2}
   - {fileID: 11400000, guid: da4e0bed6e21b5942afd807c2a1d3d83, type: 2}
   ItemSelector: {fileID: 1638537097}
+  itemPrefab: {fileID: 7597502270807152435, guid: a6ca806b23cca574bbf1ee06bf8e4d63,
+    type: 3}
+  SelectedItem: {fileID: 0}
 --- !u!114 &2107643717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6683,6 +6573,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2107643719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107643714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8aa86b7bcd58342b5150ff68d19782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryGridShow
+  shopSlot:
+  - {fileID: 1670887109}
+  - {fileID: 1936492186}
+  - {fileID: 159975079}
+  - {fileID: 208532761}
+  - {fileID: 302009701}
+  - {fileID: 652975748}
+  - {fileID: 1123607358}
+  - {fileID: 2080158191}
+  - {fileID: 1159608358}
+  - {fileID: 1612745461}
+  - {fileID: 1698398432}
+  - {fileID: 360019241}
+  - {fileID: 20223480}
+  - {fileID: 1902024708}
+  - {fileID: 1702013328}
+  - {fileID: 1308304836}
+  - {fileID: 1364470216}
+  - {fileID: 1037381049}
+  - {fileID: 818093145}
+  - {fileID: 1205566733}
+  - {fileID: 777537191}
+  - {fileID: 1098488902}
+  - {fileID: 60722723}
+  - {fileID: 319773875}
+  - {fileID: 254544980}
+  - {fileID: 123256739}
+  - {fileID: 1913409954}
+  - {fileID: 2102144618}
+  - {fileID: 1002858313}
+  - {fileID: 1072253187}
+  - {fileID: 557174624}
+  - {fileID: 933116487}
+  - {fileID: 1996380843}
+  - {fileID: 100866091}
+  - {fileID: 1909259816}
+  inventorySlots:
+  - {fileID: 663054834}
+  - {fileID: 714600846}
+  - {fileID: 1071510426}
+  - {fileID: 2010348686}
+  - {fileID: 2123260462}
+  - {fileID: 1657725479}
+  - {fileID: 280694699}
+  - {fileID: 1182397862}
+  - {fileID: 1582842002}
+  - {fileID: 1962995957}
+  - {fileID: 1554073254}
+  - {fileID: 705058794}
+  - {fileID: 1914383648}
+  - {fileID: 824378744}
+  - {fileID: 716938587}
+  - {fileID: 340361622}
+  - {fileID: 1527975179}
+  - {fileID: 1047834344}
+  - {fileID: 2111333016}
+  - {fileID: 1489169151}
+  - {fileID: 1970413065}
+  - {fileID: 592184441}
+  - {fileID: 1872319713}
+  - {fileID: 786464693}
+  - {fileID: 773791489}
+  - {fileID: 570272913}
+  - {fileID: 747484856}
+  - {fileID: 497269654}
+  - {fileID: 3271558}
+  - {fileID: 1886368332}
+  - {fileID: 139933977}
+  - {fileID: 901060427}
+  - {fileID: 1298643244}
+  - {fileID: 2110824991}
+  - {fileID: 94834465}
 --- !u!1 &2110824989
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8257070729309903958}
   - component: {fileID: 8972169022818919360}
   m_Layer: 6
-  m_Name: ItemBuyable
+  m_Name: Item
   m_TagString: Player
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 86, y: 86, z: 86}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,8 +96,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.7
+  m_Offset: {x: 0.016265899, y: 0.032532036}
+  m_Radius: 0.44516528
 --- !u!114 &8257070729309903958
 MonoBehaviour:
   m_ObjectHideFlags: 0

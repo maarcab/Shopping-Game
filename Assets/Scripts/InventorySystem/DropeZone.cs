@@ -27,10 +27,10 @@ public class DropZone : MonoBehaviour
         switch (action)
         {
             case DropAction.Sell:
-                return inventoryManager.SellItem(item);
+                return inventoryManager.SellItem();
 
             case DropAction.Buy:
-                return inventoryManager.BuyItem(item);
+                return inventoryManager.BuyItem();
         }
         return false;
         // Destruir el objeto despu?s de la acci?n

@@ -1,12 +1,11 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public Inventory playerInventory; // Referencia al inventario del jugador
-    public Inventory shopInventory;   // Referencia al inventario de la tienda
-
+    public static InventoryManager instance;
+    //UI
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI shopCoinText;
     public TextMeshProUGUI healthText;
@@ -15,9 +14,17 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private int playerCoins = 100;
     [SerializeField] private int shopCoins = 10000;
     [SerializeField] private int health = 50;
+
     [SerializeField] ItemData[] items;
     [SerializeField] GameObject ItemSelector;
+    [SerializeField] GameObject itemPrefab;
 
+    public ItemLogic SelectedItem;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         UpdateUI();
@@ -36,7 +43,6 @@ public class InventoryManager : MonoBehaviour
         shopCoinText.text = $"{Localizer.GetText("Coins")}: {shopCoins}";
         healthText.text = $"{Localizer.GetText("Health")}: {health}";
 
-        
         if (healthBar != null)
         {
             healthBar.value = health;
@@ -56,20 +62,29 @@ public class InventoryManager : MonoBehaviour
         }
         return 0;
     }
-    public bool BuyItem(ItemData selectedItem)
+    public bool BuyItem()
     {
-        if (playerInventory.playerInventory.Count < 35)
+        if (Inventory.instance.playerInventory.Count < 35)
         {
-            if (selectedItem != null && shopInventory.shopInventory.Contains(selectedItem) && playerCoins >= selectedItem.cost)
+            if (SelectedItem != null && Inventory.instance.shopInventory.Contains(SelectedItem) && playerCoins >= SelectedItem.itemData.cost)
             {
-                playerCoins -= selectedItem.cost;
-                shopCoins += selectedItem.cost;
+                playerCoins -= SelectedItem.itemData.cost;
+                shopCoins += SelectedItem.itemData.cost;
 
-                // Añadir el item al inventario del jugador y quitarlo de la tienda
-                playerInventory.playerInventory.Add(selectedItem);
-                shopInventory.shopInventory.Remove(selectedItem);
+                SelectedItem.gameObject.layer = 6;
+                SelectedItem.transform.SetParent(null);
+
+                
+                Inventory.instance.playerInventory.Add(SelectedItem);
+                Inventory.instance.shopInventory.Remove(SelectedItem);
+
+                // Asignar nuevo slot en el inventario del jugador
+             
+                InventoryGridShow.instance.AddItemToSlot(SelectedItem.gameObject, true);
+                InventoryGridShow.instance.ReorganizeSlots(false);
 
                 UpdateUI();
+                MoveSelector();
                 return true;
             }
             else
@@ -84,20 +99,26 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
     }
-    public bool SellItem(ItemData selectedItem)
+    public bool SellItem()
     {
-        if (shopInventory.shopInventory.Count < 35)
+        if (Inventory.instance.shopInventory.Count < 35)
         {
-            if (selectedItem != null && playerInventory.playerInventory.Contains(selectedItem))
+            if (SelectedItem != null && Inventory.instance.playerInventory.Contains(SelectedItem))
             {
-                playerCoins += selectedItem.cost;
-                shopCoins -= selectedItem.cost;
+                playerCoins += SelectedItem.itemData.cost;
+                shopCoins -= SelectedItem.itemData.cost;
 
-                // Añadir el item al inventario de la tienda y quitarlo del inventario del jugador
-                playerInventory.playerInventory.Remove(selectedItem);
-                shopInventory.shopInventory.Add(selectedItem);
+                SelectedItem.gameObject.layer = 7;
+                SelectedItem.transform.SetParent(null);
+
+                Inventory.instance.playerInventory.Remove(SelectedItem);
+                Inventory.instance.shopInventory.Add(SelectedItem);
+
+                InventoryGridShow.instance.AddItemToSlot(SelectedItem.gameObject, false);
+                InventoryGridShow.instance.ReorganizeSlots(true);
 
                 UpdateUI();
+                MoveSelector();
                 return true;
             }
             else
@@ -112,17 +133,25 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
     }
-    public void UseItem(ItemData selectedItem)
+    public void UseItem()
     {
-        if (selectedItem != null && playerInventory.playerInventory.Contains(selectedItem))
+        if (SelectedItem != null && Inventory.instance.playerInventory.Contains(SelectedItem))
         {
-            if (selectedItem.itemType == ItemData.ItemType.Food || selectedItem.itemType == ItemData.ItemType.Potion)
+            if (SelectedItem.itemData.itemType == ItemData.ItemType.Food || SelectedItem.itemData.itemType == ItemData.ItemType.Potion)
             {
-                Debug.Log($"Usado: {selectedItem.itemName} - Restaura vida");
-                health += selectedItem.lifeRestore;
-                health = Mathf.Clamp(health, 0, 100); // no superar max de salud
-                playerInventory.playerInventory.Remove(selectedItem);
+                Debug.Log($"Usado: {SelectedItem.itemData.itemName} - Restaura vida");
+                health += SelectedItem.itemData.lifeRestore;
+                health = Mathf.Clamp(health, 0, 100);
+
+                Inventory.instance.playerInventory.Remove(SelectedItem);
+
+                Destroy(SelectedItem.gameObject);
+                SelectedItem = null;
+
+                InventoryGridShow.instance.ReorganizeSlots(true);
+
                 UpdateUI();
+                MoveSelector();
             }
             else
             {
@@ -136,23 +165,29 @@ public class InventoryManager : MonoBehaviour
     }
     public void GenerateItem()
     {
-        if (shopInventory.shopInventory.Count < 35)
+        if (Inventory.instance.shopInventory.Count < 35)
         {
+            GameObject k = Instantiate(itemPrefab);
             int rnd = Random.Range(0, items.Length);
-            Debug.Log(rnd);
-            shopInventory.shopInventory.Add(items[rnd]);
+            k.GetComponent<ItemLogic>().OnData(items[rnd]);
+
+            k.layer = 7;
+
+            Inventory.instance.shopInventory.Add(k.GetComponent<ItemLogic>());
+
+            InventoryGridShow.instance.AddItemToSlot(k, false);
         }
         else
         {
             Debug.Log("TiendaLlena");
         }
     }
-    public void MoveSelector(GameObject itemSelected)
+    public void MoveSelector()
     {
-        if (itemSelected != null)
+        if (SelectedItem != null)
         {
             ItemSelector.GetComponent<Image>().enabled = true;
-            ItemSelector.transform.position = itemSelected.transform.position;
+            ItemSelector.transform.position = SelectedItem.transform.position;
         }
         else
         {
