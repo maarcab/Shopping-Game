@@ -1,1 +1,21 @@
 Place here all the licenses for your assets:
+
+== IMÁGENES Y FONDOS =========================================================
+
+Título: Fondo de pantalla de título y ending screen
+Tipo: Ilustración/Fondo
+Autor: Freepik
+Fuente: www.freepik.es
+Licencia: Freepik Gratuita (requiere atribución)
+Atribución requerida: "Diseñado por Freepik" - www.freepik.es
+Archivo usado: [grunge-certificate-with-vintage-ornamental-frame.png]
+
+Título: Botón de inicio (Start Game)
+Tipo: Sprite / UI
+Autor: pzUH
+Fuente: https://pzuh.itch.io/free-medieval-game-buttons
+Licencia: Gratuita para uso en juegos (consultar al autor para otros usos). Se requiere atribución.
+Atribución sugerida: "Botones medievales por pzUH (pzuh.itch.io)"
+Archivo usado: [Button_3.png]
+
+===============================================================================
