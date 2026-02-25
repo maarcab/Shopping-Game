@@ -41,6 +41,9 @@ public class TitleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void StartGame()
     {
-        SceneManager.LoadScene(sceneName);
+        if (GameManager.Instance != null)
+            GameManager.Instance.StartGame();
+        else
+            SceneManager.LoadScene(sceneName);
     }
 }
