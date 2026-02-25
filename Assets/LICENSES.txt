@@ -28,8 +28,8 @@ LICENSE - CC0
 
 ===============================================================================
 
-ICONS
+ICONos
 
-Author: https://shikashipx.itch.io/
-License: Creative Commons Attribution --> https://creativecommons.org/licenses/by/4.0/deed.en
-Attribution: shikashipx Fantasy Icons Pack --> https://shikashipx.itch.io/shikashis-fantasy-icons-pack
+Autor: https://shikashipx.itch.io/
+Licencia: Creative Commons Attribution --> https://creativecommons.org/licenses/by/4.0/deed.en
+Atribucion: shikashipx Fantasy Icons Pack --> https://shikashipx.itch.io/shikashis-fantasy-icons-pack
